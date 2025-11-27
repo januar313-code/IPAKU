@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPA Learning Hub - Platform Pembelajaran Sains SMP</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100%;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    }
+
+    /* Header Styles */
+    .header {
+      background: white;
+      padding: 1.2rem 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    .app-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      margin: 0;
+      opacity: 0.7;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0 0 1rem 0;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      margin: 0 0 3rem 0;
+      opacity: 0.8;
+    }
+
+    /* Core Content Cards */
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 2rem 0;
+      text-align: center;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .content-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 3px solid transparent;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .content-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* Featured Section */
+    .featured-section {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      margin: 3rem 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 3px solid transparent;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .feature-description {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="app-container"><!-- Header -->
+   <header class="header" role="banner">
+    <div class="logo-section">
+     <svg class="logo" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="#3b82f6" /> <path d="M 30 40 Q 50 20 70 40" stroke="white" stroke-width="4" fill="none" /> <circle cx="50" cy="50" r="15" fill="#10b981" /> <path d="M 35 60 L 50 75 L 65 60" stroke="#fb923c" stroke-width="4" fill="none" />
+     </svg>
+     <div>
+      <h1 class="app-title" id="appName">IPA Learning Hub</h1>
+      <p class="tagline" id="tagline">Belajar Sains Jadi Menyenangkan!</p>
+     </div>
+    </div>
+    <nav class="nav-buttons" role="navigation" aria-label="Navigasi Utama"><a href="https://example.com/konten-ipa" target="_blank" rel="noopener noreferrer" class="nav-btn" aria-label="Pemahaman IPA Konten">📚 Pemahaman IPA (Konten)</a> <a href="https://example.com/keterampilan-proses-sains" target="_blank" rel="noopener noreferrer" class="nav-btn" aria-label="Keterampilan Proses Sains">🔬 Keterampilan Proses Sains (KPS)</a>
+    </nav>
+   </header><!-- Main Dashboard -->
+   <main id="dashboard" role="main"><!-- Hero Section -->
+    <section class="hero-section">
+     <h2 class="hero-title" id="heroTitle">Jelajahi Dunia Sains 🌟</h2>
+     <p class="hero-subtitle" id="heroSubtitle">Platform pembelajaran interaktif untuk siswa SMP dengan konten menarik dan lab virtual</p>
+    </section><!-- Core Content Section -->
+    <section class="content-section">
+     <h2 class="section-title">Konten Inti Pembelajaran</h2>
+     <div class="cards-grid"><a href="https://example.com/materi/makhluk-hidup" target="_blank" rel="noopener noreferrer" class="content-card" id="card1" aria-label="Makhluk Hidup"> <span class="card-icon">🦋</span> <h3 class="card-title">Makhluk Hidup</h3></a> <a href="https://example.com/materi/zat" target="_blank" rel="noopener noreferrer" class="content-card" id="card2" aria-label="Zat"> <span class="card-icon">⚗️</span> <h3 class="card-title">Zat</h3></a> <a href="https://example.com/materi/energi" target="_blank" rel="noopener noreferrer" class="content-card" id="card3" aria-label="Energi"> <span class="card-icon">⚡</span> <h3 class="card-title">Energi</h3></a> <a href="https://example.com/materi/gerak-gaya" target="_blank" rel="noopener noreferrer" class="content-card" id="card4" aria-label="Gerak dan Gaya"> <span class="card-icon">🚀</span> <h3 class="card-title">Gerak &amp; Gaya</h3></a> <a href="https://example.com/materi/bumi-antariksa" target="_blank" rel="noopener noreferrer" class="content-card" id="card5" aria-label="Bumi dan Antariksa"> <span class="card-icon">🌍</span> <h3 class="card-title">Bumi &amp; Antariksa</h3></a>
+     </div>
+    </section><!-- Featured Section -->
+    <section class="featured-section">
+     <h2 class="section-title">Fitur Unggulan</h2>
+     <div class="featured-grid"><a href="https://example.com/lab-virtual" target="_blank" rel="noopener noreferrer" class="feature-card" aria-label="Lab Virtual"> <span class="feature-icon">🧪</span> <h3 class="feature-title">Lab Virtual</h3><p class="feature-description">Lakukan eksperimen sains dengan aman di laboratorium virtual 3D</p></a> <a href="https://example.com/simulasi-interaktif" target="_blank" rel="noopener noreferrer" class="feature-card" aria-label="Simulasi Interaktif"> <span class="feature-icon">🎮</span> <h3 class="feature-title">Simulasi Interaktif</h3><p class="feature-description">Pelajari konsep sains melalui simulasi yang menarik dan interaktif</p></a>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script>
+    const defaultConfig = {
+      app_name: 'IPA Learning Hub',
+      tagline: 'Belajar Sains Jadi Menyenangkan!',
+      hero_title: 'Jelajahi Dunia Sains 🌟',
+      hero_subtitle: 'Platform pembelajaran interaktif untuk siswa SMP dengan konten menarik dan lab virtual',
+      background_color: '#f0f9ff',
+      card_background: '#ffffff',
+      primary_color: '#3b82f6',
+      secondary_color: '#10b981',
+      accent_color: '#fb923c',
+      font_family: 'Inter',
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const appNameEl = document.getElementById('appName');
+      const taglineEl = document.getElementById('tagline');
+      const heroTitleEl = document.getElementById('heroTitle');
+      const heroSubtitleEl = document.getElementById('heroSubtitle');
+
+      if (appNameEl) appNameEl.textContent = config.app_name || defaultConfig.app_name;
+      if (taglineEl) taglineEl.textContent = config.tagline || defaultConfig.tagline;
+      if (heroTitleEl) heroTitleEl.textContent = config.hero_title || defaultConfig.hero_title;
+      if (heroSubtitleEl) heroSubtitleEl.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const cardBg = config.card_background || defaultConfig.card_background;
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+
+      const appContainer = document.querySelector('.app-container');
+      if (appContainer) {
+        appContainer.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${bgColor} 100%)`;
+      }
+
+      const body = document.body;
+      if (body) {
+        body.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${bgColor} 100%)`;
+        body.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
+      }
+
+      document.querySelectorAll('.content-card, .featured-section, .header').forEach(el => {
+        el.style.background = cardBg;
+      });
+
+      document.querySelectorAll('.feature-card').forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${bgColor} 100%)`;
+      });
+
+      const navBtns = document.querySelectorAll('.nav-btn');
+      navBtns.forEach((btn, index) => {
+        if (index === 0) {
+          btn.style.background = primaryColor;
+          btn.style.color = 'white';
+        } else if (index === 1) {
+          btn.style.background = secondaryColor;
+          btn.style.color = 'white';
+        } else {
+          btn.style.background = accentColor;
+          btn.style.color = 'white';
+        }
+      });
+
+      const contentCards = document.querySelectorAll('.content-card');
+      contentCards.forEach((card, index) => {
+        const colors = [primaryColor, secondaryColor, accentColor, primaryColor, secondaryColor];
+        card.style.borderColor = colors[index % colors.length];
+        card.addEventListener('mouseenter', () => {
+          card.style.borderColor = colors[index % colors.length];
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.borderColor = 'transparent';
+        });
+      });
+
+      const featureCards = document.querySelectorAll('.feature-card');
+      featureCards.forEach((card, index) => {
+        const colors = [primaryColor, secondaryColor];
+        card.style.borderColor = colors[index % colors.length];
+        card.addEventListener('mouseenter', () => {
+          card.style.borderColor = colors[index % colors.length];
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.borderColor = 'transparent';
+        });
+      });
+
+      if (appNameEl) appNameEl.style.fontSize = `${baseSize * 1.5}px`;
+      if (taglineEl) taglineEl.style.fontSize = `${baseSize * 0.85}px`;
+      if (heroTitleEl) heroTitleEl.style.fontSize = `${baseSize * 2.5}px`;
+      if (heroSubtitleEl) heroSubtitleEl.style.fontSize = `${baseSize * 1.25}px`;
+
+      document.querySelectorAll('.section-title').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.8}px`;
+      });
+      document.querySelectorAll('.card-title').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.2}px`;
+      });
+      document.querySelectorAll('.feature-title').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.4}px`;
+      });
+      document.querySelectorAll('.nav-btn').forEach(el => {
+        el.style.fontSize = `${baseSize * 0.95}px`;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.card_background || defaultConfig.card_background,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.card_background = value;
+                window.elementSdk.setConfig({ card_background: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['app_name', config.app_name || defaultConfig.app_name],
+        ['tagline', config.tagline || defaultConfig.tagline],
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a4e581c1640da32',t:'MTc2NDIxMjEwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
